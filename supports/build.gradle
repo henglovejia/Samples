@@ -4,7 +4,16 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // OKHttp3导入
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    implementation "com.squareup.okio:okio:$okio_version"
+    // OKHttp日志拦截器
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttps_logging_version"
+    // Retrofit导入
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    // GSON 导入
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
