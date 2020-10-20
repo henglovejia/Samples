@@ -1,3 +1,4 @@
+include ':router'
 include ':framework'
 include ':app'
 rootProject.name = "Samples"

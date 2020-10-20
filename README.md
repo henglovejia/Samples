@@ -19,9 +19,6 @@ SqlLite数据库存储模块
 ### network
 网络请求模块 OkHttp3.0/Retrofit
 
-### router
-界面跳转模块 基于注解
-
 ### report
 埋点模块
 
@@ -36,3 +33,6 @@ SharePreference存储模块
 
 #### TimeUtil
 时间工具类
+
+## router
+界面跳转模块 使用APT技术
