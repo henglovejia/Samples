@@ -6,5 +6,5 @@ package com.heng.framework.base
  * @email 932805400@qq.com
  * @describe 列表Fragment基类
  */
-class BaseListFragment : BaseFragment() {
+open class BaseListFragment : BaseFragment() {
 }

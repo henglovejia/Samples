@@ -6,5 +6,5 @@ package com.heng.framework.card
  * @email 932805400@qq.com
  * @describe 卡片Adapter基础数据类
  */
-class BaseCardData {
+open class BaseCardData {
 }

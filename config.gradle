@@ -1,0 +1,42 @@
+ext {
+    minSdkVersion = 23
+    targetSdkVersion = 30
+    compileSdkVersion = 30
+    buildToolsVersion = '30.0.1'
+    applicationId = "com.heng.samples"
+    versionCode = 1
+    versionName = "1.0"
+    appcompatVersion = "1.1.0"
+    lifecycleVersion = "2.2.0"
+    kotlinVersion = property('kotlin_version').toString()
+    gradleVersion = property('gradle_version').toString()
+    app = []
+    kotlin = [
+            'reflect': "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
+            'stdlib' : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+            'junit'  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+    ]
+    support = [
+            'appcompat'       : "androidx.appcompat:appcompat:$appcompatVersion",
+            'constraintlayout': "androidx.constraintlayout:constraintlayout:2.0.2",
+            'javapoet'        : "com.squareup:javapoet:1.13.0",
+            'auto-service'    : "com.google.auto.service:auto-service:1.0-rc7",
+            'recyclerview'    : "androidx.recyclerview:recyclerview:$appcompatVersion",
+            'livedata'        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+            'viewmodel'       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            'material'        : "com.google.android.material:material:1.2.1"
+    ]
+    thirdparty = [
+            'okhttp3'         : "com.squareup.okhttp3:okhttp:4.9.0",
+            'okio'            : "com.squareup.okio:okio:2.8.0",
+            'okhttp3-logging' : "com.squareup.okhttp3:logging-interceptor:4.9.0",
+            'retrofit'        : "com.squareup.retrofit2:retrofit:2.9.0",
+            'gson'            : "com.squareup.retrofit2:converter-gson:2.9.0",
+            'dagger-compiler' : "2.29.1",
+            'arouter-api'     : "com.alibaba:arouter-api:1.5.1",
+            'arouter-compiler': "com.alibaba:arouter-compiler:1.5.1",
+    ]
+    test = [
+            'junit': "junit:junit:4.13.1"
+    ]
+}

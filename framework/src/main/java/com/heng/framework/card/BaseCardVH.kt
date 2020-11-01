@@ -9,5 +9,5 @@ import androidx.recyclerview.widget.RecyclerView
  * @email 932805400@qq.com
  * @describe 卡片ViewHolder基类
  */
-class BaseCardVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+open class BaseCardVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 }

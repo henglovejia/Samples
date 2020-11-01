@@ -1,19 +1,19 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.heng.framework"
-        minSdkVersion 26
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -22,26 +22,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
-    implementation "androidx.recyclerview:recyclerview:$appcompat_version"
-    testImplementation 'junit:junit:4.12'
+    implementation support.appcompat
+    implementation support.constraintlayout
+    implementation support.recyclerview
+    testImplementation test.junit
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    // OKHttp3导入
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation "com.squareup.okio:okio:$okio_version"
+    // OKHttp3
+    implementation thirdparty.okhttp3
+    implementation thirdparty.okio
     // OKHttp日志拦截器
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttps_logging_version"
-    // Retrofit导入
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    // GSON 导入
-    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
-
+    implementation thirdparty.'okhttp3-logging'
+    // Retrofit
+    implementation thirdparty.retrofit
+    // GSON
+    implementation thirdparty.gson
+    // ARouter
+    implementation thirdparty.'arouter-api'
+    kapt thirdparty.'arouter-compiler'
 }

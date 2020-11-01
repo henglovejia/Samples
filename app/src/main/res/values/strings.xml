@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Samples</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string-array name="main_tabs_path">
+        <item>/main/DebugFragment</item>
+        <item>/main/RudimentFragment</item>
+        <item>/main/AdvanceFragment</item>
+        <item>/main/FrameworkFragment</item>
+    </string-array>
 </resources>
