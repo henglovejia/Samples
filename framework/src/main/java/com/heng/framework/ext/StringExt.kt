@@ -1,12 +1,13 @@
 package com.heng.framework.ext
 
 import android.util.Log
+import com.heng.framework.base.BaseExt
 
 /**
  * @author zhangheng
  * @since 2020/11/1
  * @email 932805400@qq.com
- * @describe String 扩展扩展函数
+ * @describe String 扩展函数
  */
 
 /**
@@ -30,4 +31,8 @@ fun String.logW(tag: String) {
 
 fun String.logE(tag: String) {
     Log.e(tag, this)
+}
+
+object StringExt : BaseExt() {
+
 }

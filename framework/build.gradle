@@ -5,8 +5,12 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -31,23 +35,28 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.core:core-ktx:1.3.2'
+
+    implementation kotlin_libs.stdlib
+    implementation kotlin_libs.ktx
+
     implementation support.appcompat
     implementation support.constraintlayout
     implementation support.recyclerview
-    testImplementation test.junit
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
     // OKHttp3
-    implementation thirdparty.okhttp3
-    implementation thirdparty.okio
+    implementation third_party.okhttp3
+    implementation third_party.okio
     // OKHttp日志拦截器
-    implementation thirdparty.'okhttp3-logging'
+    implementation third_party.'okhttp3-logging'
     // Retrofit
-    implementation thirdparty.retrofit
+    implementation third_party.retrofit
     // GSON
-    implementation thirdparty.gson
+    implementation third_party.gson
     // ARouter
-    implementation thirdparty.'arouter-api'
-    kapt thirdparty.'arouter-compiler'
+    implementation third_party.'arouter-api'
+    kapt third_party.'arouter-compiler'
+
+    testImplementation test.junit
+    androidTestImplementation test.'junit-ext'
+    androidTestImplementation test.'junit-espresso'
 }

@@ -1,7 +1,9 @@
 package com.heng.framework.ext
 
 import android.view.View
+import androidx.annotation.IdRes
 import com.heng.framework.base.BaseActivity
+import com.heng.framework.base.BaseExt
 
 /**
  * @author zhangheng
@@ -10,16 +12,16 @@ import com.heng.framework.base.BaseActivity
  * @describe
  */
 
-/**
- * 懒加载查找View
- */
-const val TAG = "ActivityExt"
-inline fun <reified T : View> BaseActivity.findViewLazy(resId: Int): Lazy<T?> = lazy {
-    val view = findViewById(resId) as? T
-    if (view == null) {
-        "find view failure, activity is:${this.TAG} and view is:${T::class.java.simpleName}".logE(
-            TAG
-        )
+object ActivityExt : BaseExt() {
+    /**
+     * 懒加载查找View
+     */
+    @JvmStatic
+    fun <T : View> BaseActivity.findViewLazy(@IdRes resId: Int): Lazy<T?> = lazy {
+        val view = findViewById(resId) as? T
+        if (view == null) {
+            "find view failure from activity:${this.TAG}".logE(this@ActivityExt.TAG)
+        }
+        view
     }
-    view
 }
