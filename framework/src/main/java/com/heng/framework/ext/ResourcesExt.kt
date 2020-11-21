@@ -1,8 +1,9 @@
 package com.heng.framework.ext
 
-import androidx.annotation.IdRes
+import android.content.res.XmlResourceParser
+import androidx.annotation.IntDef
 import com.heng.framework.base.BaseActivity
-import com.heng.framework.base.BaseExt
+import java.lang.reflect.Type
 
 /**
  * @author zhangheng
@@ -14,51 +15,56 @@ import com.heng.framework.base.BaseExt
 /**
  * 扩展函数中支持获取的类型
  */
-enum class SupportResourceType {
-    INT, INT_ARRAY, STRING, STRING_ARRAY, TEXT, BOOLEAN, ANIMATION, DIMEN
-}
 
-object ResourcesExt : BaseExt() {
-    /**
-     * 懒加载获取资源
-     * 能获取的资源种类请参考[SupportResourceType]
-     */
-    @JvmStatic
-    fun <T> BaseActivity.getResourceLazy(resId: Int, type: SupportResourceType): Lazy<T?> = lazy {
-        val resource = when (type) {
-            SupportResourceType.INT -> {
-                resources.getInteger(resId)
-            }
-            SupportResourceType.INT_ARRAY -> {
-                resources.getIntArray(resId)
-            }
-            SupportResourceType.STRING -> {
-                resources.getString(resId)
-            }
-            SupportResourceType.STRING_ARRAY -> {
-                resources.getStringArray(resId)
-            }
-            SupportResourceType.TEXT -> {
-                resources.getText(resId)
-            }
-            SupportResourceType.BOOLEAN -> {
-                resources.getBoolean(resId)
-            }
-            SupportResourceType.ANIMATION -> {
-                resources.getAnimation(resId)
-            }
-            SupportResourceType.DIMEN -> {
-                resources.getDimension(resId)
-            }
-            else -> {
-                null
-            }
+const val INT = 0
+const val INT_ARRAY = 1
+const val STRING = 2
+const val STRING_ARRAY = 3
+const val TEXT = 4
+const val BOOLEAN = 5
+const val ANIMATION = 6
+const val DIMEN = 7
+
+@IntDef(INT, INT_ARRAY, STRING, STRING_ARRAY, TEXT, BOOLEAN, ANIMATION, DIMEN)
+@Retention(AnnotationRetention.SOURCE)
+annotation class SupportResourceType
+
+/**
+ * 懒加载获取资源
+ * 能获取的资源种类请参考[SupportResourceType]
+ */
+fun <T> BaseActivity.getResourceLazy(resId: Int, returnType: Type): Lazy<T?> = lazy {
+    val resource = when (returnType.javaClass) {
+        Int::class.java -> {
+            resources.getInteger(resId) as? T
         }
-        if (resource != null) {
-            "the type of resource is:${resource::class.java.simpleName}".logD(this@ResourcesExt.TAG)
-        } else {
-            "get resource failure".logE("ResourcesExt")
+        IntArray::class.java -> {
+            resources.getIntArray(resId) as? T
         }
-        resource as? T
+        String::class.java -> {
+            resources.getString(resId) as? T
+        }
+        Array<String>::class.java -> {
+            resources.getStringArray(resId) as? T
+        }
+        CharSequence::class.java -> {
+            resources.getText(resId) as? T
+        }
+        Boolean::class.java -> {
+            resources.getBoolean(resId) as? T
+        }
+        XmlResourceParser::class.java -> {
+            resources.getAnimation(resId) as? T
+        }
+        Float::class.java -> {
+            resources.getDimension(resId) as? T
+        }
+        else -> {
+            null
+        }
     }
+    if (resource == null) {
+        "the resource type is not support".logE("ResourceExt")
+    }
+    resource
 }

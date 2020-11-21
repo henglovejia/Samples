@@ -7,5 +7,5 @@ package com.heng.framework.base
  * @describe
  */
 open class BaseExt {
-    val TAG = this::class.java.simpleName
+    protected val TAG = this::class.java.simpleName
 }

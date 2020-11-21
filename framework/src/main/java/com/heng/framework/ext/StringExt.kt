@@ -1,7 +1,8 @@
 package com.heng.framework.ext
 
 import android.util.Log
-import com.heng.framework.base.BaseExt
+import com.google.gson.Gson
+import org.json.JSONObject
 
 /**
  * @author zhangheng
@@ -33,6 +34,21 @@ fun String.logE(tag: String) {
     Log.e(tag, this)
 }
 
-object StringExt : BaseExt() {
+/**
+ * 解析Json字符串
+ */
 
-}
+fun String.getJsonString(
+    key: String,
+    default: String?,
+    errorTag: String = "StringExt#getJsonString"
+) = try {
+        Gson().toJson(this, String::class.java)
+        JSONObject(this).getString(key)
+    } catch (ex: Exception) {
+        ex.toString().logE(errorTag)
+        default
+    }
+
+fun String.getJsonStringOrNull(key: String) =
+    getJsonString(key, null, "StringExt#getJsonStringOrNull")

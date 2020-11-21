@@ -8,9 +8,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.heng.framework.base.BaseActivity
-import com.heng.framework.ext.ActivityExt.findViewLazy
-import com.heng.framework.ext.ResourcesExt.getResourceLazy
-import com.heng.framework.ext.SupportResourceType
+import com.heng.framework.ext.findViewLazy
+import com.heng.framework.ext.getResourceLazy
 import com.heng.framework.ext.logE
 
 /**
@@ -24,7 +23,7 @@ class MainActivity : BaseActivity() {
     private val mTabLayout by findViewLazy<TabLayout>(R.id.main_tab_layout)
     private val mTabPath by getResourceLazy<Array<String>>(
         R.array.main_tabs_path,
-        SupportResourceType.STRING_ARRAY
+        Array<String>::class.java
     )
     private val mAdapter: FragmentStateAdapter by lazy { getViewPager2Adapter() }
 

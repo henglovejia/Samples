@@ -52,6 +52,7 @@ dependencies {
     implementation third_party.retrofit
     // GSON
     implementation third_party.gson
+    implementation third_party.'fast-json'
     // ARouter
     implementation third_party.'arouter-api'
     kapt third_party.'arouter-compiler'

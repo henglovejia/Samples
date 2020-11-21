@@ -33,7 +33,7 @@ ext {
             'okhttp3-logging' : "com.squareup.okhttp3:logging-interceptor:4.9.0",
             'retrofit'        : "com.squareup.retrofit2:retrofit:2.9.0",
             'gson'            : "com.squareup.retrofit2:converter-gson:2.9.0",
-            'dagger-compiler' : "2.29.1",
+            'fast-json'       : "com.alibaba:fastjson:1.2.75",
             'arouter-api'     : "com.alibaba:arouter-api:1.5.1",
             'arouter-compiler': "com.alibaba:arouter-compiler:1.5.1",
     ]
